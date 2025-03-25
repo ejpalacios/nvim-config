@@ -15,6 +15,9 @@ vim.api.nvim_create_autocmd("FileType", {
 		"tsplayground",
 		"lazy",
 		"mason",
+		"fugitive",
+		"Outline",
+		"TelescopePrompt",
 	},
 	callback = function(event)
 		vim.bo[event.buf].buflisted = false
@@ -32,4 +35,3 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.spell = true
 	end,
 })
-

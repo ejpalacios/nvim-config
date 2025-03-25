@@ -3,6 +3,7 @@ return {
 	-- Link: https://github.com/williamboman/mason.nvim
 	{
 		"williamboman/mason.nvim",
+		cmd = { "Mason", "MasonInstall", "MasonUpdate" },
 		opts = {
 			ui = {
 				icons = {

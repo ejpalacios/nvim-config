@@ -12,7 +12,6 @@ return {
 	-- Link: https://github.com/nvim-neo-tree/neo-tree.nvim
 	{
 		"nvim-neo-tree/neo-tree.nvim",
-		version = "v2.x",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons",
@@ -25,13 +24,16 @@ return {
 					["<space>"] = "none",
 				},
 			},
+			source_selector = {
+				winbar = true,
+			},
 		},
 		config = function(_, opts)
 			vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1]])
 			require("neo-tree").setup(opts)
-			vim.keymap.set("n", "<leader>ft", function()
+			vim.keymap.set("n", "<leader>n", function()
 				require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
-			end, { desc = "[F]ile [T]ree" })
+			end, { desc = "NeoTree: [n]avigation" })
 		end,
 	},
 	-- Status line
@@ -99,18 +101,18 @@ return {
 		"echasnovski/mini.bufremove",
 		keys = {
 			{
-				"<leader>bd",
+				"<leader>cc",
 				function()
 					require("mini.bufremove").delete(0, false)
 				end,
-				desc = "Delete Buffer",
+				desc = "[cc]lose Buffer",
 			},
 			{
-				"<leader>bD",
+				"<leader>cC",
 				function()
 					require("mini.bufremove").delete(0, true)
 				end,
-				desc = "Delete Buffer (Force)",
+				desc = "[cC]lose Buffer (Force)",
 			},
 		},
 	},
@@ -120,11 +122,16 @@ return {
 		"rcarriga/nvim-notify",
 		keys = {
 			{
-				"<leader>un",
+				"<leader>dn",
 				function()
 					require("notify").dismiss({ silent = true, pending = true })
 				end,
-				desc = "Delete all Notifications",
+				desc = "Notify: [d]ismiss [n]otifications",
+			},
+			{
+				"<leader>fn",
+				"<cmd>Telescope notify<cr>",
+				desc = "[f]ind [n]otification",
 			},
 		},
 		init = function()

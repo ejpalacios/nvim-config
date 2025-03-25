@@ -4,6 +4,12 @@ return {
 	{
 		"nvim-tree/nvim-web-devicons",
 	},
+	-- Icon Provider
+	-- https://github.com/echasnovski/mini.icons
+	{
+		"echasnovski/mini.icons",
+		version = false,
+	},
 	-- UI components library
 	-- Link: https://github.com/MunifTanjim/nui.nvim
 	{

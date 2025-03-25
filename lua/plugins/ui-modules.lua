@@ -7,34 +7,34 @@ return {
 		cmd = "Trouble",
 		keys = {
 			{
-				"<leader>xx",
+				"<leader>xd",
 				"<cmd>Trouble diagnostics toggle<cr>",
-				desc = "Diagnostics (Trouble)",
+				desc = "Trouble: [x]oggle [d]iagnostics",
 			},
 			{
-				"<leader>xX",
+				"<leader>xb",
 				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-				desc = "Buffer Diagnostics (Trouble)",
+				desc = "Trouble: [x]oggle [b]uffer diagnostics",
 			},
 			{
-				"<leader>cs",
+				"<leader>xs",
 				"<cmd>Trouble symbols toggle focus=false<cr>",
-				desc = "Symbols (Trouble)",
-			},
-			{
-				"<leader>cl",
-				"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-				desc = "LSP Definitions / references / ... (Trouble)",
+				desc = "Trouble: [x]oggle [s]ymbols",
 			},
 			{
 				"<leader>xL",
-				"<cmd>Trouble loclist toggle<cr>",
-				desc = "Location List (Trouble)",
+				"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+				desc = "Trouble: [x]oggle [L]SP Definitions / references / ...",
 			},
 			{
-				"<leader>xQ",
+				"<leader>xl",
+				"<cmd>Trouble loclist toggle<cr>",
+				desc = "Trouble: [x]oggle [l]ocation List",
+			},
+			{
+				"<leader>xf",
 				"<cmd>Trouble qflist toggle<cr>",
-				desc = "Quickfix List (Trouble)",
+				desc = "Trouble: [x]oggle Quick[f]ix List",
 			},
 		},
 	},
@@ -53,31 +53,31 @@ return {
 				group = vim.api.nvim_create_augroup("ToggleTermKeys", { clear = true }),
 				pattern = { "term://*" },
 				callback = function()
-					vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], { buffer = 0, desc = "Leave terminal" })
-					vim.keymap.set("t", "jk", [[<C-\><C-n>]], { buffer = 0, desc = "Leave terminal" })
-					vim.keymap.set("n", "<C-h>", "<C-w>h", { buffer = 0, desc = "Go to left window" })
-					vim.keymap.set("n", "<C-j>", "<C-w>j", { buffer = 0, desc = "Go to lower window" })
-					vim.keymap.set("n", "<C-k>", "<C-w>k", { buffer = 0, desc = "Go to upper window" })
-					vim.keymap.set("n", "<C-l>", "<C-w>l", { buffer = 0, desc = "Go to right window" })
+					vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], { buffer = 0, desc = "Term: Leave" })
+					vim.keymap.set("t", "jk", [[<C-\><C-n>]], { buffer = 0, desc = "Term: Leave" })
+					vim.keymap.set("n", "<C-h>", "<C-w>h", { buffer = 0, desc = "Term: Go to left" })
+					vim.keymap.set("n", "<C-j>", "<C-w>j", { buffer = 0, desc = "Term: Go to lower" })
+					vim.keymap.set("n", "<C-k>", "<C-w>k", { buffer = 0, desc = "Term: Go to upper" })
+					vim.keymap.set("n", "<C-l>", "<C-w>l", { buffer = 0, desc = "Term: Go to right" })
 					vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], { buffer = 0 })
-					vim.keymap.set("t", "<C-Up>", "<cmd>resize +2<cr>", { buffer = 0, desc = "Increase window height" })
+					vim.keymap.set("t", "<C-Up>", "<cmd>resize +2<cr>", { buffer = 0, desc = "Term: Increase height" })
 					vim.keymap.set(
 						"t",
 						"<C-Down>",
 						"<cmd>resize -2<cr>",
-						{ buffer = 0, desc = "Decrease window height" }
+						{ buffer = 0, desc = "Term: Decrease height" }
 					)
 					vim.keymap.set(
 						"t",
 						"<C-Left>",
 						"<cmd>vertical resize -2<cr>",
-						{ buffer = 0, desc = "Decrease window width" }
+						{ buffer = 0, desc = "Term: Decrease width" }
 					)
 					vim.keymap.set(
 						"t",
 						"<C-Right>",
 						"<cmd>vertical resize +2<cr>",
-						{ buffer = 0, desc = "Increase window width" }
+						{ buffer = 0, desc = "Term: Increase width" }
 					)
 				end,
 			})
@@ -89,9 +89,9 @@ return {
 		"simrat39/symbols-outline.nvim",
 		keys = {
 			{
-				"<leader>sy",
+				"<leader>so",
 				"<cmd>SymbolsOutline<cr>",
-				desc = "Symbols outline",
+				desc = "[s]ymbols [o]utline",
 			},
 		},
 		config = true,

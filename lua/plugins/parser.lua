@@ -10,14 +10,15 @@ return {
 	{
 		{
 			"nvim-treesitter/nvim-treesitter",
-			version = false,
+			event = { "BufReadPost", "BufNewFile" },
+			cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
 			build = ":TSUpdate",
 			dependencies = {
 				"nvim-treesitter/nvim-treesitter-textobjects",
 			},
 			keys = {
 				{ "c-space", desc = "Increment selection" },
-				{ "M-space", desc = "Decrement selection", mode = "x" },
+				{ "c-M-space", desc = "Decrement selection", mode = "x" },
 			},
 			opts = {
 				sync_install = false,
@@ -25,6 +26,7 @@ return {
 				highlight = {
 					enable = true,
 					additional_vim_regex_highlighting = false,
+					use_languagetree = true,
 				},
 				-- disable = { "latex" },
 				indent = {
@@ -36,7 +38,7 @@ return {
 						init_selection = "<c-space>",
 						node_incremental = "<c-space>",
 						scope_incremental = "<c-s>",
-						node_decremental = "<M-space>",
+						node_decremental = "<c-M-space>",
 					},
 				},
 				textobjects = {
@@ -57,20 +59,20 @@ return {
 						enable = true,
 						set_jumps = true, -- whether to set jumps in the jumplist
 						goto_next_start = {
-							["]m"] = "@function.outer",
-							["]]"] = "@class.outer",
+							["[f"] = "@function.outer",
+							["[o"] = "@class.outer",
 						},
 						goto_next_end = {
-							["]M"] = "@function.outer",
-							["]["] = "@class.outer",
+							["]f"] = "@function.outer",
+							["]o"] = "@class.outer",
 						},
 						goto_previous_end = {
-							["[M"] = "@function.outer",
-							["[]"] = "@class.outer",
+							["]F"] = "@function.outer",
+							["]O"] = "@class.outer",
 						},
 						goto_previous_start = {
-							["[m"] = "@function.outer",
-							["[["] = "@class.outer",
+							["[F"] = "@function.outer",
+							["[O"] = "@class.outer",
 						},
 					},
 					swap = {

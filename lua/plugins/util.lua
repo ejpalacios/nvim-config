@@ -3,7 +3,13 @@ return {
 	-- Link: https://github.com/windwp/nvim-autopairs
 	{
 		"windwp/nvim-autopairs",
-		config = true,
+		event = "InsertEnter",
+		config = function(_, opts)
+			require("nvim-autopairs").setup(opts)
+			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+			local cmp = require("cmp")
+			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+		end,
 	},
 	-- Editing of surrounding elements
 	-- Link: https://github.com/tpope/vim-surround
@@ -25,9 +31,9 @@ return {
 	{
 		"ggandor/leap.nvim",
 		keys = {
-			{ "s", mode = { "n", "x", "o" }, desc = "Leap forward to" },
-			{ "S", mode = { "n", "x", "o" }, desc = "Leap backward to" },
-			{ "gs", mode = { "n", "x", "o" }, desc = "Leap from windows" },
+			{ "s", mode = { "n", "x", "o" }, desc = "Leap: forward[s] to" },
+			{ "S", mode = { "n", "x", "o" }, desc = "Leap: backward[S] to" },
+			{ "gs", mode = { "n", "x", "o" }, desc = "Leap: [g]o from window[s]" },
 		},
 		config = function(_, opts)
 			local leap = require("leap")
@@ -79,8 +85,8 @@ return {
 			vim.g.mkdp_theme = "dark"
 		end,
 		keys = {
-			{ "<leader>mp", "<cmd>MarkdownPreview<cr>", desc = "Open Markdown Preview" },
-			{ "<leader>mc", "<cmd>MarkdownPreviewStop<cr>", desc = "Close Markdown Preview" },
+			{ "<leader>mo", "<cmd>MarkdownPreview<cr>", desc = "Markdown: [m]arkdown [o]pen" },
+			{ "<leader>mc", "<cmd>MarkdownPreviewStop<cr>", desc = "Markdown: [m]arkdown [c]lose" },
 		},
 	},
 }
