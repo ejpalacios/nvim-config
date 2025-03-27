@@ -33,4 +33,4 @@ map("n", "<leader>xF", "<cmd>FormatOnSave<cr>", { desc = "[x]oggle [F]ormat" })
 map("n", "<leader>F", "<cmd>Format<cr>", { desc = "[F]ormat buffer" })
 
 -- Git
-map("n", "<leader>G", "<cmd>Git<cr>", { desc = "[F]ormat buffer" })
+map("n", "<leader>G", "<cmd>Git<cr>", { desc = "[G]it" })

@@ -36,28 +36,31 @@ M.settings = {
 	pylsp = {
 		pylsp = {
 			plugins = {
-				pycodestyle = {
-					enabled = false,
-				},
-				pydocstyle = {
+				ruff = {
 					enabled = true,
-					convention = "google",
-				},
-				mccabe = {
-					enabled = true,
-				},
-				pyflakes = {
-					enabled = true,
-				},
-				autopep8 = {
-					enabled = false,
-				},
-				yapf = {
-					enabled = false,
+					formatEnable = false,
 				},
 				black = {
 					enabled = true,
 				},
+				-- pycodestyle = {
+				-- 	enabled = false,
+				-- },
+				-- pydocstyle = {
+				-- 	enabled = false,
+				-- },
+				-- mccabe = {
+				-- 	enabled = false,
+				-- },
+				-- pyflakes = {
+				-- 	enabled = false,
+				-- },
+				-- autopep8 = {
+				-- 	enabled = false,
+				-- },
+				-- yapf = {
+				-- 	enabled = false,
+				-- },
 			},
 		},
 	},

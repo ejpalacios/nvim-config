@@ -31,6 +31,20 @@ return {
 			require("plugins.lsp.util").on_attach(function(client, buffer)
 				require("plugins.lsp.format").on_attach(client, buffer)
 				require("plugins.lsp.keymaps").on_attach(client, buffer)
+				vim.api.nvim_create_autocmd("CursorHold", {
+					buffer = buffer,
+					callback = function()
+						local options = {
+							focusable = false,
+							close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+							border = "rounded",
+							source = "always",
+							prefix = " ",
+							scope = "cursor",
+						}
+						vim.diagnostic.open_float(nil, options)
+					end,
+				})
 			end)
 			-- Load list of servers from options
 			local servers = opts.servers
@@ -49,9 +63,9 @@ return {
 		end,
 	},
 	-- Formatting
-	-- Link: https://github.com/jose-elias-alvarez/null-ls.nvim
+	-- Link: https://github.com/nvimtools/none-ls.nvim
 	{
-		"jose-elias-alvarez/null-ls.nvim",
+		"nvimtools/none-ls.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			"nvim-lua/plenary.nvim",
