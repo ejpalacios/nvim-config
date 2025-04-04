@@ -27,25 +27,17 @@ return {
 		},
 		config = function(_, opts)
 			-- vim.lsp.set_log_level("debug")
-			-- Setup formatting and keymaps
+			-- Setup formatting, keymaps, diagnostics, and symbols
 			require("plugins.lsp.util").on_attach(function(client, buffer)
 				require("plugins.lsp.format").on_attach(client, buffer)
 				require("plugins.lsp.keymaps").on_attach(client, buffer)
-				vim.api.nvim_create_autocmd("CursorHold", {
-					buffer = buffer,
-					callback = function()
-						local options = {
-							focusable = false,
-							close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-							border = "rounded",
-							source = "always",
-							prefix = " ",
-							scope = "cursor",
-						}
-						vim.diagnostic.open_float(nil, options)
-					end,
-				})
+				require("plugins.lsp.diagnostic").on_attach(client, buffer)
+				require("plugins.lsp.docsymbols").on_attach(client, buffer)
 			end)
+			-- Configure hover and signature help boxes
+			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+			vim.lsp.handlers["textDocument/signatureHelp"] =
+				vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 			-- Load list of servers from options
 			local servers = opts.servers
 			-- Broadcast to LSP servers the capabilities of nvim-cmp

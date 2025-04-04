@@ -31,6 +31,7 @@ function M.on_attach(client, buffer)
 	end
 
 	if client.supports_method("textDocument/formatting") then
+		-- Autoformatting
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			group = vim.api.nvim_create_augroup("LspFormat." .. buffer, {}),
 			buffer = buffer,
@@ -43,16 +44,17 @@ function M.on_attach(client, buffer)
 		vim.api.nvim_buf_create_user_command(buffer, "Format", function(_)
 			M.format(buffer)
 		end, { desc = "Format current buffer" })
+
+		-- Create command to manage autoformatting
+		vim.api.nvim_create_user_command("FormatOnSave", function()
+			M.autoformat = not M.autoformat
+			if M.autoformat then
+				vim.notify("Setting autoformatting to: " .. tostring(M.autoformat), vim.log.levels.INFO)
+			else
+				vim.notify("Setting autoformatting to: " .. tostring(M.autoformat), vim.log.levels.WARN)
+			end
+		end, { desc = "Activate autoformattin on save" })
 	end
 end
-
-vim.api.nvim_create_user_command("FormatOnSave", function()
-	M.autoformat = not M.autoformat
-	if M.autoformat then
-		vim.notify("Setting autoformatting to: " .. tostring(M.autoformat), vim.log.levels.INFO)
-	else
-		vim.notify("Setting autoformatting to: " .. tostring(M.autoformat), vim.log.levels.WARN)
-	end
-end, { desc = "Activate autoformattin on save" })
 
 return M

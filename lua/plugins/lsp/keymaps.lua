@@ -15,7 +15,7 @@ function M.on_attach(client, buffer)
 
 	nmap("gd", vim.lsp.buf.definition, "[g]oto [d]efinition")
 	nmap("gr", require("telescope.builtin").lsp_references, "[g]oto [r]eferences")
-	nmap("gR", vim.lsp.buf.references, "[G]oto [R]eferences")
+	nmap("gR", vim.lsp.buf.references, "[g]oto [R]eferences")
 	nmap("gI", vim.lsp.buf.implementation, "[g]oto [I]mplementation")
 	nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
 	nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[d]ocument [s]ymbols")
@@ -33,14 +33,9 @@ function M.on_attach(client, buffer)
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 	end, "[w]orkspace [l]ist Folders")
 
-	-- -- Create a command `:Format` local to the LSP buffer
-	-- vim.api.nvim_buf_create_user_command(buffer, "FormatLsp", function(_)
-	--     vim.lsp.buf.format({ bufnr = buffer })
-	-- end, { desc = "Format current buffer with LSP" })
-	--
-	-- if client.server_capabilities.documentSymbolProvider then
-	--     require("nvim-navic").attach(client, buffer)
-	-- end
+	if client.server_capabilities.documentSymbolProvider then
+		require("nvim-navic").attach(client, buffer)
+	end
 end
 
 return M
